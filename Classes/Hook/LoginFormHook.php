@@ -36,29 +36,32 @@ class LoginFormHook extends UsernamePasswordLoginProvider {
 	public function render(StandaloneView $view, PageRenderer $pageRenderer, LoginController $loginController) {
 		parent::render($view, $pageRenderer, $loginController);
 
-		$backendLoginSettings = self::getBackendLoginSettings();
+		$backendSettings = self::getBackendLoginSettings();
 
 		$view->setLayoutRootPaths([\TgMUtility::getExtPath() . 'Resources/Private/Backend/Layouts']);
-		$highlightColor = $backendLoginSettings['style']['highlightColor'];
 		$customCSS = '
-			img.typo3-login-image { max-width: 150px; }
 			.btn-login, .btn-login:active, .btn-login:active:focus, .btn-login:active:hover,
 				.btn-login:focus, .btn-login:hover, .btn-login:visited,				
 				.btn-login.disabled:hover, .btn-login[disabled]:hover, fieldset[disabled] .btn-login:hover,
 				.btn-login.disabled:focus, .btn-login[disabled]:focus, fieldset[disabled] .btn-login:focus,
-				.btn-login.disabled.focus, .btn-login[disabled].focus, fieldset[disabled] .btn-login.focus  { background-color: ' . $highlightColor . '; }
-			.panel-login .panel-body { border-color: ' . $highlightColor . '; }
+				.btn-login.disabled.focus, .btn-login[disabled].focus, fieldset[disabled] .btn-login.focus  { background-color: ' . $backendSettings['style']['highlightColor'] . '; }
+			.panel-login .panel-body { border-color: ' . $backendSettings['style']['highlightColor'] . '; }
 		';
 
-		$background = $backendLoginSettings['style']['background'];
-		if(preg_match('/^#[a-f0-9]{6}$/i', $background)) {
-			$customCSS .= '.typo3-login { background-color: ' . $background . '; }';
+		if(preg_match('/^#[a-f0-9]{6}$/i', $backendSettings['style']['background'])) {
+			$customCSS .= '.typo3-login { background-color: ' . $backendSettings['style']['background'] . '; }';
 		} else {
-			$customCSS .= '.typo3-login { background-image: url("' . $background . '"); }';
+			$customCSS .= '.typo3-login { background-image: url("' . $backendSettings['style']['background'] . '"); }';
+		}
+
+		if($backendSettings['style']['logo'] === 'sysext/backend/Resources/Public/Images/typo3_orange.svg') {
+			$customCSS .= ' img.typo3-login-image { max-width: 150px; }';
+		} else {
+			$customCSS .= ' img.typo3-login-image { max-width: 100% !important; }';
 		}
 
 		$pageRenderer->addCssInlineBlock('tgm_customerservice', $customCSS);
-		$view->assign('backendSettings', $backendLoginSettings);
+		$view->assign('backendSettings', $backendSettings);
 	}
 
 	/**
@@ -69,6 +72,7 @@ class LoginFormHook extends UsernamePasswordLoginProvider {
 	 */
 	public static function getBackendLoginSettings() {
 		$settings = [];
+
 		/**
 		 * Prüft, ob die Datei existiert oder nicht.
 		 */
