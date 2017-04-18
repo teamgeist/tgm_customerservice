@@ -1,0 +1,153 @@
+<f:layout name="Default"/>
+
+<f:section name="content">
+	<h1>Backend-Einstellungen</h1>
+	<f:flashMessages/>
+	<f:render partial="FormErrors"/>
+	<f:form action="save" name="backendSettings" object="{backendSettings}" method="POST">
+		<hr>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Login-Logo&nbsp;<span class="glyphicon glyphicon-question-sign" title="http://example.com/typo3/<Pfad> oder Direktlink"></span></span>
+					<f:form.textfield type="text" class="form-control" property="style.logo"/>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Topbar-Icon&nbsp;<span class="glyphicon glyphicon-question-sign" title="http://example.com/typo3/<Pfad>"></span>&nbsp;<span class="glyphicon glyphicon-exclamation-sign" title="Bei fehlerhaften Eingaben könnte es zu PHP-Fehlern kommen!"></span></span>
+					<f:form.textfield type="text" class="form-control" property="style.topbarIcon"/>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Hightlight-Color&nbsp;<span class="glyphicon glyphicon-question-sign" title="HEX-Farbe mit # (6-stellig)"></span></span>
+					<f:form.textfield type="text" class="form-control" property="style.highlightColor" pattern="^#[a-fA-F0-9]<![CDATA[{6}]]>$"/>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Hintergrund&nbsp;<span class="glyphicon glyphicon-question-sign" title="HEX-Farbe mit # (6-stellig) oder Direktlink"></span></span>
+					<f:form.textfield type="text" class="form-control" property="style.background"/>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Titel</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.title"/>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Firmenlogo</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.companyLogo"/>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Firmenname</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.company"/>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Untertitel</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.subtitle"/>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Straße</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.street"/>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Nummer</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.housenumber"/>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">PLZ</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.zip"/>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Ort</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.city"/>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Telefon</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.phone"/>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Fax</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.fax"/>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Website</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.website"/>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">E-Mail</span>
+					<f:form.textfield type="text" class="form-control" property="companyData.email"/>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<f:form.button type="submit" value="Speichern" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>&nbsp;Speichern</f:form.button>
+	</f:form>
+	<hr>
+	<div class="row">
+		<div class="col-md-9">
+			<f:form action="updateFromSettings" name="backendSettings" object="{backendSettings}" method="POST">
+				<div class="row">
+					<div clasS="col-md-12">
+						<p>Die Standardeinstellungen können mithilfe einer eigenen oder der Standard-Datei gesetzt werden:</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-10">
+						<div class="input-group">
+							<span class="input-group-addon">Standardwerte setzen</span>
+							<f:form.textfield type="text" class="form-control" property="paths.file" required="1" value="http://cdn.teamgeist-medien.de/tgm/ext/tgm_customerservice/{backendSettings.extVersion}/backendsettings.json"/>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="input-group btn-block">
+							<f:form.button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-repeat"></span></f:form.button>
+						</div>
+					</div>
+				</div>
+				<br/>
+			</f:form>
+		</div>
+	</div>
+</f:section>

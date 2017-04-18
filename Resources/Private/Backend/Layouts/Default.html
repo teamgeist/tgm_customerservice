@@ -1,0 +1,32 @@
+<f:be.container xmlns:f="http://www.w3.org/1999/html" includeJsFiles="{
+	jQuery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+	bootstrap: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'
+}" includeCssFiles="{
+	bootstrap: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'
+}">
+	<div class="typo3-fullDoc">
+		<div id="typo3-docheader">
+			<div class="typo3-docheader-functions">
+				<div class="left">
+					<f:be.buttons.csh/>
+				</div>
+				<div class="right">
+					<f:be.pagePath/>
+					<f:be.pageInfo/>
+				</div>
+			</div>
+			<div class="typo3-docheader-buttons">
+				<div class="left"></div>
+				<div class="right">
+					<f:be.buttons.shortcut/>
+				</div>
+			</div>
+		</div>
+		<div id="typo3-docbody">
+			<div id="typo3-inner-docbody">
+				<f:flashMessages/>
+				<f:render section="content"/>
+			</div>
+		</div>
+	</div>
+</f:be.container>
