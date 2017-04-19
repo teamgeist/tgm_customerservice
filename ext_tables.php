@@ -11,7 +11,7 @@ if(TYPO3_MODE == 'BE') {
 	$logo = LoginFormHook::getBackendLoginSettings()['style']['topbarIcon'];
 
 	/**
-	 * TODO: "Pfad-Manipulierung" ("../", "sysext" etc. ...), da fehlerhafte Eingaben können zu "getimagesize"-Fehlern führen
+	 * TODO: "Pfad-Manipulierung" ("../", "sysext" etc. ...), da fehlerhafte Eingaben zu "getimagesize"-Fehlern führen können
 	 */
 
 	if(!is_null($logo) || !empty($logo) || strlen($logo) > 0) $GLOBALS['TBE_STYLES']['logo'] = $logo;
