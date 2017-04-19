@@ -9,9 +9,13 @@ require_once ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/TgMUtility
 if(TYPO3_MODE == 'BE') {
 	require_once ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hook/LoginFormHook.php';
 	$logo = LoginFormHook::getBackendLoginSettings()['style']['topbarIcon'];
+
+	/**
+	 * TODO: "Pfad-Manipulierung" ("../", "sysext" etc. ...), da fehlerhafte Eingaben können zu "getimagesize"-Fehlern führen
+	 */
+
 	if(!is_null($logo) || !empty($logo) || strlen($logo) > 0) $GLOBALS['TBE_STYLES']['logo'] = $logo;
 }
-
 
 call_user_func(
 	function ($extKey) {
