@@ -1,5 +1,6 @@
 <?php
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /***
  *
@@ -14,7 +15,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 class TgMUtility {
 
 	const EXT_KEY = 'tgm_customerservice';
-	const EXT_DIR_PATH = PATH_site . '/fileadmin/ext/tgm_customerservice';
+	const EXT_DIR_PATH = PATH_site . 'fileadmin/ext/tgm_customerservice';
 
 	private static $emConf = [];
 

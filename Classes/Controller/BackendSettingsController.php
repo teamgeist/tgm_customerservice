@@ -46,7 +46,7 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 		 * Wenn nicht, wird er erstellt.
 		 */
 		if(!is_dir(\TgMUtility::EXT_DIR_PATH)) {
-			GeneralUtility::mkdir(\TgMUtility::EXT_DIR_PATH);
+			GeneralUtility::mkdir_deep(\TgMUtility::EXT_DIR_PATH);
 		}
 
 		$updateFile = $backendSettings['paths']['file'];
