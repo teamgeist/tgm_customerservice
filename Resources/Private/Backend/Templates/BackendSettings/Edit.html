@@ -2,7 +2,7 @@
 <f:layout name="Default"/>
 
 <f:section name="content">
-	<h1>Backend-Einstellungen</h1>
+	<h1><f:translate key="tgm_customerservice.title" htmlEscape="false" /></h1>
 	<f:flashMessages/>
 	<f:render partial="FormErrors"/>
 	<f:form action="save" name="backendSettings" object="{backendSettings}" method="POST">
@@ -139,11 +139,16 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-10">
+					<div class="col-md-9">
 						<div class="input-group">
 							<span class="input-group-addon">Standardwerte setzen</span>
-							<f:form.textfield type="text" class="form-control" property="paths.file" required="1" value="http://cdn.teamgeist-medien.de/tgm/ext/tgm_customerservice/{backendSettings.extVersion}/backendsettings.json"/>
+							<f:form.textfield type="text" class="form-control" property="paths.file" required="1" value="http://cdn.teamgeist-medien.de/tgm/ext/tgm_customerservice/config_versions/{backendSettings.configVersion}.json"/>
 						</div>
+					</div>
+					<div class="col-md-1">
+						<f:link.action class="btn btn-default btn-block" target="_blank">
+							<core:icon identifier="apps-pagetree-page-domain"/>
+						</f:link.action>
 					</div>
 					<div class="col-md-2">
 						<div class="input-group btn-block">

@@ -65,7 +65,12 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 			}
 		}
 
-		$backendSettings['extVersion'] = \TgMUtility::getExtVersion();
+		/**
+		 * TODO: Wenn man, während man die Backend-Einstellungen geöffnet hat den roten Systemcache löscht und dann den
+		 * TODO:    Frame neuläd (per Rechtsklick -> "Frame neuladen"), dann konnte die Extension-Version nicht erkannt
+		 * TODO:    werden. Läd man den Frame danach erneut (ohne Cache zu löschen), funktioniert es wieder.
+		 */
+		$backendSettings['configVersion'] = \TgMUtility::EXT_CONFIG_VERSION;
 		$this->view->assign('backendSettings', $backendSettings);
 	}
 

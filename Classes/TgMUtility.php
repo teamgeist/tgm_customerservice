@@ -15,6 +15,7 @@ class TgMUtility {
 
 	const EXT_KEY = 'tgm_customerservice';
 	const EXT_DIR_PATH = PATH_site . 'fileadmin/ext/tgm_customerservice';
+	const EXT_CONFIG_VERSION = 1;
 
 	private static $emConf = [];
 
