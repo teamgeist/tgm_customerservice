@@ -5,9 +5,17 @@ module.tx_tgmcustomerservice {
 	}
 
 	view {
-		templateRootPaths.0 = EXT:tgm_customerservice/Resources/Private/Backend/Templates/
-		partialRootPaths.0 = EXT:tgm_customerservice/Resources/Private/Backend/Partials/
-		layoutRootPaths.0 = EXT:tgm_customerservice/Resources/Private/Backend/Layouts/
+		templateRootPaths {
+			0 = EXT:tgm_customerservice/Resources/Private/Backend/Templates/
+		}
+
+		partialRootPaths {
+			0 = EXT:tgm_customerservice/Resources/Private/Backend/Partials/
+		}
+
+		layoutRootPaths {
+			0 = EXT:tgm_customerservice/Resources/Private/Backend/Layouts/
+		}
 	}
 }
 
@@ -18,11 +26,19 @@ module.tx_tgmcustomerservice_tools_tgmcustomerserviceadministrationmodule {
 	}
 
 	view {
-		templateRootPaths.0 = EXT:tgm_customerservice/Resources/Private/Backend/Templates/
-		templateRootPaths.1 = {$module.tx_tgmcustomerservice_administrationmodule.view.templateRootPath}
-		partialRootPaths.0 = EXT:tgm_customerservice/Resources/Private/Backend/Partials/
-		partialRootPaths.1 = {$module.tx_tgmcustomerservice_administrationmodule.view.partialRootPath}
-		layoutRootPaths.0 = EXT:tgm_customerservice/Resources/Private/Backend/Layouts/
-		layoutRootPaths.1 = {$module.tx_tgmcustomerservice_administrationmodule.view.layoutRootPath}
+		templateRootPaths {
+			0 = EXT:tgm_customerservice/Resources/Private/Backend/Templates/
+			1 = {$module.tx_tgmcustomerservice_administrationmodule.view.templateRootPath}
+		}
+
+		partialRootPaths {
+			0 = EXT:tgm_customerservice/Resources/Private/Backend/Partials/
+			1 = {$module.tx_tgmcustomerservice_administrationmodule.view.partialRootPath}
+		}
+
+		layoutRootPaths {
+			0 = EXT:tgm_customerservice/Resources/Private/Backend/Layouts/
+			1 = {$module.tx_tgmcustomerservice_administrationmodule.view.layoutRootPath}
+		}
 	}
 }

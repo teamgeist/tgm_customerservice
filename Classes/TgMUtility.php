@@ -1,5 +1,4 @@
 <?php
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /***
  *
@@ -16,8 +15,6 @@ class TgMUtility {
 	const EXT_KEY = 'tgm_customerservice';
 	const EXT_DIR_PATH = PATH_site . 'fileadmin/ext/tgm_customerservice';
 	const EXT_CONFIG_VERSION = 1;
-
-	private static $emConf = [];
 
 	/**
 	 * TODO: Einen anderen Weg finden die Modul-Gruppe umzupositionieren, da dieser nicht gut ist und zu Fehlern führen kann.
@@ -49,37 +46,5 @@ class TgMUtility {
 		}
 
 		$GLOBALS['TBE_MODULES'] = array_merge($arrayTop, $arrayBottom);
-	}
-
-	/**
-	 * Returns the extension configuration settings as an array.
-	 *
-	 * @return array array
-	 */
-	public static function getEmConf() {
-		if(empty(self::$emConf)) {
-			include_once ExtensionManagementUtility::extPath(self::EXT_KEY) . 'ext_emconf.php';
-			/** @noinspection PhpUndefinedVariableInspection */
-			self::$emConf = $EM_CONF[self::EXT_KEY];
-		}
-		return self::$emConf;
-	}
-
-	/**
-	 * Gibt die Extension-Version von "tgm_customerservice" zurück.
-	 *
-	 * @return string Die Extension-Version
-	 */
-	public static function getExtVersion() {
-		return self::getEmConf()['version'];
-	}
-
-	/**
-	 * Übergibt den den absoluten Extension-Pfad von "tgm_customerservice".
-	 *
-	 * @return string Der Extension-Pfad.
-	 */
-	public static function getExtPath() {
-		return ExtensionManagementUtility::extPath(self::EXT_KEY);
 	}
 }

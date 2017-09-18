@@ -14,16 +14,14 @@ return [
 		'enablecolumns' => [
 			'disabled' => 'hidden',
 			'starttime' => 'starttime',
-			'endtime' => 'endtime',
+			'endtime' => 'endtime'
 		],
 		'searchFields' => '',
 		'iconfile' => 'EXT:tgm_customerservice/Resources/Public/Icons/tx_tgmcustomerservice_domain_model_administrationmodule.gif'
 	],
-	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, ',
-	],
+	'interface' => ['showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, '],
 	'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, , --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, , --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime']
 	],
 	'columns' => [
 		'sys_language_uid' => [
@@ -33,15 +31,11 @@ return [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
 				'special' => 'languages',
-				'items' => [
-					[
-						'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
-						-1,
-						'flags-multiple'
-					]
-				],
 				'default' => 0,
-			],
+				'items' => [
+					['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1, 'flags-multiple']
+				]
+			]
 		],
 		'l10n_parent' => [
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -50,25 +44,23 @@ return [
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
-				'items' => [
-					['', 0],
-				],
 				'foreign_table' => 'tx_tgmcustomerservice_domain_model_administrationmodule',
 				'foreign_table_where' => 'AND tx_tgmcustomerservice_domain_model_administrationmodule.pid=###CURRENT_PID### AND tx_tgmcustomerservice_domain_model_administrationmodule.sys_language_uid IN (-1,0)',
-			],
+				'items' => [
+					['', 0]
+				]
+			]
 		],
 		'l10n_diffsource' => [
-			'config' => [
-				'type' => 'passthrough',
-			],
+			'config' => ['type' => 'passthrough']
 		],
 		't3ver_label' => [
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
 			'config' => [
 				'type' => 'input',
 				'size' => 30,
-				'max' => 255,
-			],
+				'max' => 255
+			]
 		],
 		'hidden' => [
 			'exclude' => true,
@@ -76,11 +68,9 @@ return [
 			'config' => [
 				'type' => 'check',
 				'items' => [
-					'1' => [
-						'0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled'
-					]
-				],
-			],
+					'1' => ['0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled']
+				]
+			]
 		],
 		'starttime' => [
 			'exclude' => true,
@@ -90,7 +80,7 @@ return [
 				'type' => 'input',
 				'size' => 13,
 				'eval' => 'datetime',
-				'default' => 0,
+				'default' => 0
 			]
 		],
 		'endtime' => [
@@ -102,10 +92,8 @@ return [
 				'size' => 13,
 				'eval' => 'datetime',
 				'default' => 0,
-				'range' => [
-					'upper' => mktime(0, 0, 0, 1, 1, 2038)
-				]
-			],
-		],
-	],
+				'range' => ['upper' => mktime(0, 0, 0, 1, 1, 2038)]
+			]
+		]
+	]
 ];

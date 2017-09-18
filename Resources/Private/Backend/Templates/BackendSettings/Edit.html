@@ -1,165 +1,162 @@
-{namespace core = TYPO3\CMS\Core\ViewHelpers}
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
 <f:layout name="Default"/>
 
 <f:section name="content">
-	<h1><f:translate key="tgm_customerservice.title" htmlEscape="false" /></h1>
-	<f:flashMessages/>
-	<f:render partial="FormErrors"/>
-	<f:form action="save" name="backendSettings" object="{backendSettings}" method="POST">
-		<hr>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Login-Logo&nbsp;<span title="http://example.com/typo3/<Pfad> oder Direktlink"><core:icon identifier="module-help"/></span></span>
-					<f:form.textfield type="text" class="form-control" property="style.logo"/>
-					<span class="input-group-addon">150px-Breite empfohlen</span>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Topbar-Icon&nbsp;<span title="http://example.com/typo3/<Pfad> oder Direktlink"><core:icon identifier="module-help"/></span>&nbsp;<span title="Bei fehlerhaften Eingaben könnte es zu PHP-Fehlern kommen!"><core:icon identifier="status-dialog-notification"/></span></span>
-					<f:form.textfield type="text" class="form-control" property="style.topbarIcon"/>
-					<span class="input-group-addon">22x22 Pixel empfohlen</span>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Hightlight-Color&nbsp;<span title="HEX-Farbe mit # (6-stellig)"><core:icon identifier="module-help"/></span></span>
-					<f:form.textfield type="text" class="form-control" property="style.highlightColor" pattern="^#[a-fA-F0-9]<![CDATA[{6}]]>$"/>
-					<span class="input-group-addon">Hervorhebungsfarbe beim Login</span>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Hintergrund&nbsp;<span title="HEX-Farbe mit # (6-stellig) oder Direktlink"><core:icon identifier="module-help"/></span></span>
-					<f:form.textfield type="text" class="form-control" property="style.background"/>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<br/>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Titel</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.title"/>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Firmenlogo</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.companyLogo"/>
-					<span class="input-group-addon">73x22 Pixel empfohlen</span>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Firmenname</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.company"/>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-addon">Untertitel</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.subtitle"/>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<br/>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">Straße</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.street"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">Nummer</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.housenumber"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">PLZ</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.zip"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">Ort</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.city"/>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">Telefon</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.phone"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">Fax</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.fax"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">Website</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.website"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon">E-Mail</span>
-					<f:form.textfield type="text" class="form-control" property="companyData.email"/>
-				</div>
-			</div>
-		</div>
-		<hr>
-		<f:form.button type="submit" value="Speichern" class="btn btn-success">Speichern</f:form.button>
-	</f:form>
-	<hr>
-	<div class="row">
-		<div class="col-md-9">
-			<f:form action="updateFromSettings" name="backendSettings" object="{backendSettings}" method="POST">
-				<div class="row">
-					<div clasS="col-md-12">
-						<p>Die Standardeinstellungen können mithilfe einer eigenen oder der Standard-Datei gesetzt werden:</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-9">
-						<div class="input-group">
-							<span class="input-group-addon">Standardwerte setzen</span>
-							<f:form.textfield type="text" class="form-control" property="paths.file" required="1" value="http://cdn.teamgeist-medien.de/tgm/ext/tgm_customerservice/config_versions/{backendSettings.configVersion}.json"/>
-						</div>
-					</div>
-					<div class="col-md-1">
-						<f:link.action class="btn btn-default btn-block" target="_blank">
-							<core:icon identifier="apps-pagetree-page-domain"/>
-						</f:link.action>
-					</div>
-					<div class="col-md-2">
-						<div class="input-group btn-block">
-							<f:form.button type="submit" class="btn btn-default btn-block" title="Felder aktualisieren">
-								<core:icon identifier="actions-document-synchronize"/>
-							</f:form.button>
-						</div>
-					</div>
-				</div>
-				<br/>
-			</f:form>
-		</div>
-	</div>
+    <h1>
+        <f:translate key="tgm_customerservice.title" htmlEscape="false"/>
+    </h1>
+    <f:flashMessages/>
+    <f:render partial="FormErrors"/>
+    <f:form action="save" name="backendSettings" object="{backendSettings}" method="POST">
+        <hr>
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="style-login-logo">Login-Logo <sub>(150px-Breite empfohlen) (z. B.: "http://example.com/typo3/&lt;Pfad&gt;" oder Direktlink)</sub></label>
+                        <f:form.textfield id="style-login-logo" type="text" class="form-control btn-blockhol" property="style.logo"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="style-topbar-icon">Topbar-Icon <sub>(22x22 Pixel empfohlen) (http://example.com/typo3/&lt;Pfad&gt; oder Direktlink) <i>(Bei fehlerhaften Eingaben könnte es zu PHP-Fehlern kommen)</i></sub></label>
+                        <f:form.textfield id="style-topbar-icon" type="text" class="form-control" property="style.topbarIcon"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="style-highlight-color">Hightlight-Color&nbsp;<sub>(Hervorhebungsfarbe beim Login) (HEX-Farbe mit #, 6-stellig)</sub></label>
+                        <f:form.textfield id="style-highlight-color" type="text" class="form-control" property="style.highlightColor"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="style-background">Hintergrund <sub>(HEX-Farbe mit #, 6-stellig, oder Direktlink)</sub></label>
+                        <f:form.textfield id="style-background" type="text" class="form-control" property="style.background"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <br/>
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="companyData-title">Titel</label>
+                        <f:form.textfield id="companyData-title" type="text" class="form-control" property="companyData.title"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="companyData-companyLogo">Firmenlogo <sub>(73x22 Pixel empfohlen)</sub></label>
+                        <f:form.textfield id="companyData-companyLogo" type="text" class="form-control" property="companyData.companyLogo"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="companyData-company">Firmenname</label>
+                        <f:form.textfield id="companyData-company" type="text" class="form-control" property="companyData.company"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="companyData-subtitle">Untertitel</label>
+                        <f:form.textfield id="companyData-subtitle" type="text" class="form-control" property="companyData.subtitle"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <br/>
+        <fieldset>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-street">Straße</label>
+                        <f:form.textfield id="companyData-street" type="text" class="form-control" property="companyData.street"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-housenumber">Nummer</label>
+                        <f:form.textfield id="companyData-housenumber" type="text" class="form-control" property="companyData.housenumber"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-zip">PLZ</label>
+                        <f:form.textfield id="companyData-zip" type="text" class="form-control" property="companyData.zip"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-city">Ort</label>
+                        <f:form.textfield id="companyData-city" type="text" class="form-control" property="companyData.city"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-phone">Telefon</label>
+                        <f:form.textfield id="companyData-phone" type="text" class="form-control" property="companyData.phone"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-fax">Fax</label>
+                        <f:form.textfield id="companyData-fax" type="text" class="form-control" property="companyData.fax"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-city">Webseite</label>
+                        <f:form.textfield id="companyData-website" type="text" class="form-control" property="companyData.website"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="companyData-email">E-Mail</label>
+                        <f:form.textfield id="companyData-email" type="text" class="form-control" property="companyData.email"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <f:form.button type="submit" value="Speichern" class="btn btn-success">Speichern</f:form.button>
+    </f:form>
+    <hr>
+    <div class="row">
+        <div class="col-md-9">
+            <f:form action="updateFromSettings" name="backendSettings" object="{backendSettings}" method="POST">
+                <div class="row">
+                    <div clasS="col-md-12">
+                        <p>Die Standardeinstellungen können mithilfe einer eigenen oder der Vorlagen-Datei gesetzt werden:</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <f:form.textfield type="text" class="form-control" property="paths.file" required="1" value="http://cdn.teamgeist-medien.de/tgm/ext/tgm_customerservice/config_versions/{backendSettings.configVersion}.json"/>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <f:link.external class="btn btn-default btn-block disabled" uri="" target="_blank" title="In neuem Tab öffnen">
+                            <core:icon identifier="apps-pagetree-page-domain"/>
+                        </f:link.external>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group btn-block">
+                            <f:form.button type="submit" class="btn btn-default btn-block" title="Felder aktualisieren">
+                                <core:icon identifier="actions-document-synchronize"/>
+                            </f:form.button>
+                        </div>
+                    </div>
+                </div>
+            </f:form>
+        </div>
+    </div>
 </f:section>

@@ -13,9 +13,11 @@ namespace TgM\TgmCustomerservice\Hook;
  *
  ***/
 
+use TgMUtility;
 use TYPO3\CMS\Backend\Controller\LoginController;
 use TYPO3\CMS\Backend\LoginProvider\UsernamePasswordLoginProvider;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -26,7 +28,7 @@ class LoginFormHook extends UsernamePasswordLoginProvider {
 	/**
 	 * Direkt-Pfad zur Datei
 	 */
-	const BACKEND_SETTINGS_FILE_PATH = \TgMUtility::EXT_DIR_PATH . '/backendsettings.json';
+	const BACKEND_SETTINGS_FILE_PATH = TgMUtility::EXT_DIR_PATH . '/backendsettings.json';
 
 	/**
 	 * @param StandaloneView  $view
@@ -38,7 +40,7 @@ class LoginFormHook extends UsernamePasswordLoginProvider {
 
 		$backendSettings = self::getBackendLoginSettings();
 
-		$view->setLayoutRootPaths([\TgMUtility::getExtPath() . 'Resources/Private/Backend/Layouts']);
+		$view->setLayoutRootPaths([ExtensionManagementUtility::extPath(TgMUtility::EXT_KEY) . 'Resources/Private/Backend/Layouts']);
 		$customCSS = '
 			.btn-login, .btn-login:active, .btn-login:active:focus, .btn-login:active:hover,
 				.btn-login:focus, .btn-login:hover, .btn-login:visited,				
@@ -71,14 +73,13 @@ class LoginFormHook extends UsernamePasswordLoginProvider {
 	 * @return array|mixed Das Array mit dem Inhalt der Konfigurationsdatei oder den Standardwerten.
 	 */
 	public static function getBackendLoginSettings() {
-		$settings = [];
 
 		/**
 		 * Prüft, ob die Datei existiert oder nicht.
 		 */
 		if(file_exists(self::BACKEND_SETTINGS_FILE_PATH)) {
-			$settings = json_decode(file_get_contents(self::BACKEND_SETTINGS_FILE_PATH), true);
+			return json_decode(file_get_contents(self::BACKEND_SETTINGS_FILE_PATH), true);
 		}
-		return $settings;
+		return [];
 	}
 }

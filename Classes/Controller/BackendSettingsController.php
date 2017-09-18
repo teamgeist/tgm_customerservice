@@ -3,6 +3,7 @@
 namespace TgM\TgmCustomerservice\Controller;
 
 use TgM\TgmCustomerservice\Hook\LoginFormHook;
+use TgMUtility;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -45,8 +46,8 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 		 * Prüft, ob der Extension-Pfad existiert.
 		 * Wenn nicht, wird er erstellt.
 		 */
-		if(!is_dir(\TgMUtility::EXT_DIR_PATH)) {
-			GeneralUtility::mkdir_deep(\TgMUtility::EXT_DIR_PATH);
+		if(!is_dir(TgMUtility::EXT_DIR_PATH)) {
+			GeneralUtility::mkdir_deep(TgMUtility::EXT_DIR_PATH);
 		}
 
 		$updateFile = $backendSettings['paths']['file'];
@@ -70,7 +71,7 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 		 * TODO:    Frame neuläd (per Rechtsklick -> "Frame neuladen"), dann konnte die Extension-Version nicht erkannt
 		 * TODO:    werden. Läd man den Frame danach erneut (ohne Cache zu löschen), funktioniert es wieder.
 		 */
-		$backendSettings['configVersion'] = \TgMUtility::EXT_CONFIG_VERSION;
+		$backendSettings['configVersion'] = TgMUtility::EXT_CONFIG_VERSION;
 		$this->view->assign('backendSettings', $backendSettings);
 	}
 
