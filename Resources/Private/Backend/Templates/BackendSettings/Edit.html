@@ -11,29 +11,31 @@
         <hr>
         <fieldset>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="style-login-logo">Login-Logo <sub>(150px-Breite empfohlen) (z. B.: "http://example.com/typo3/&lt;Pfad&gt;" oder Direktlink)</sub></label>
-                        <f:form.textfield id="style-login-logo" type="text" class="form-control btn-blockhol" property="style.logo"/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="style-topbar-icon">Topbar-Icon <sub>(22x22 Pixel empfohlen) (http://example.com/typo3/&lt;Pfad&gt; oder Direktlink) <i>(Bei fehlerhaften Eingaben könnte es zu PHP-Fehlern kommen)</i></sub></label>
-                        <f:form.textfield id="style-topbar-icon" type="text" class="form-control" property="style.topbarIcon"/>
-                    </div>
-                </div>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'style-login-logo',
+                    fieldProperty: 'style.logo',
+                    fieldLabel: 'Login-Logo',
+                    fieldDescription: '<sub>(150px-Breite empfohlen) (z. B.: &quot;http://example.com/typo3/&lt;Pfad&gt;&quot; oder Direktlink)</sub>'
+                }"/>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'style-topbar-icon',
+                    fieldProperty: 'style.topbarIcon',
+                    fieldLabel: 'Topbar-Icon',
+                    fieldDescription: '<sub>(22x22 Pixel empfohlen) (http://example.com/typo3/&lt;Pfad&gt;) <i>(Nicht existierende Pfade können PHP-Fehler verursachen)</i></sub>'
+                }"/>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="style-highlight-color">Hightlight-Color&nbsp;<sub>(Hervorhebungsfarbe beim Login) (HEX-Farbe mit #, 6-stellig)</sub></label>
+                        <label for="style-highlight-color">Hightlight-Color&nbsp;<sub>(Hervorhebungsfarbe beim Login) (6-stellige-HEX-Farbe mit beginnendem "#")</sub></label>
                         <f:form.textfield id="style-highlight-color" type="text" class="form-control" property="style.highlightColor"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="style-background">Hintergrund <sub>(HEX-Farbe mit #, 6-stellig, oder Direktlink)</sub></label>
+                        <label for="style-background">Hintergrund <sub>(6-stellige-HEX-Farbe mit beginnendem "#" oder Direktlink)</sub></label>
                         <f:form.textfield id="style-background" type="text" class="form-control" property="style.background"/>
                     </div>
                 </div>
@@ -157,6 +159,15 @@
                     </div>
                 </div>
             </f:form>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="SixCol">
+    <div class="{colClass}">
+        <div class="form-group">
+            <label for="{fieldId}">{fieldLabel} {f:if(condition: fieldDescription, then: fieldDescription)}</label>
+            <f:form.textfield id="{fieldId}" type="text" class="form-control" property="{fieldProperty}"/>
         </div>
     </div>
 </f:section>

@@ -1,4 +1,5 @@
 <?php
+
 use TgM\TgmCustomerservice\Hook\LoginFormHook;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
@@ -8,14 +9,33 @@ require_once ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/TgMUtility
 
 if(TYPO3_MODE == 'BE') {
 	require_once ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hook/LoginFormHook.php';
-	$logo = LoginFormHook::getBackendLoginSettings()['style']['topbarIcon'];
 
 	/**
-	 * TODO: "Pfad-Manipulierung" ("../", "sysext" etc. ...), da fehlerhafte Eingaben zu "getimagesize"-Fehlern führen können,
-	 * TODO: Link & Tooltip vom Icon editierbar machen
+	 * TODO: Non-existing paths might cause a php error.
+	 * TODO: Make link and toolbar editable
 	 */
+	$topbarIcon = LoginFormHook::getBackendLoginSettings()['style']['topbarIcon'];
 
-	if(!is_null($logo) || !empty($logo) || strlen($logo) > 0) $GLOBALS['TBE_STYLES']['logo'] = $logo;
+	// TBE_STYLES
+	if(!is_null($topbarIcon) || !empty(trim($topbarIcon))) {
+		$GLOBALS['TBE_STYLES']['logo'] = $topbarIcon;
+	}
+
+	// Set topbar logo (backend logo)
+	$backendConf = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['backend'];
+	if(!isset($backendConf['backendLogo']) || empty(trim($backendConf['backendLogo']))) {
+		// unserialize
+		$unserializedBackendConf = unserialize($backendConf);
+		// add icon
+		$unserializedBackendConf['backendLogo'] = $topbarIcon;
+		// (re-)serialize
+		$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['backend'] = serialize($unserializedBackendConf);
+	}
+
+	// Check if backend conf is array. If so, serialize itself
+	if(is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['backend'])) {
+		$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['backend'] = serialize($topbarIcon);
+	}
 }
 
 call_user_func(

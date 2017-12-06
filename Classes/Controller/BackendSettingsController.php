@@ -52,13 +52,10 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 
 		$updateFile = $backendSettings['paths']['file'];
 		if(!is_null($updateFile)) {
-
 			/**
-			 * TRUE = CDN-Update, FALSE = Datei-Update
+			 * TRUE = cdn update, FALSE = file update
 			 */
-			$isCdnUpdate = preg_match('/^(http[s]?:\/\/)/', $updateFile);
-			$fileJson = file_get_contents($isCdnUpdate ? $updateFile : PATH_site . $updateFile);
-
+			$fileJson = file_get_contents(preg_match('/^(http[s]?:\/\/)/', $updateFile) ? $updateFile : PATH_site . $updateFile);
 			$backendSettings = json_decode($fileJson, true);
 		} else {
 			if(file_exists(LoginFormHook::BACKEND_SETTINGS_FILE_PATH)) {
@@ -67,9 +64,8 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 		}
 
 		/**
-		 * TODO: Wenn man, während man die Backend-Einstellungen geöffnet hat den roten Systemcache löscht und dann den
-		 * TODO:    Frame neuläd (per Rechtsklick -> "Frame neuladen"), dann konnte die Extension-Version nicht erkannt
-		 * TODO:    werden. Läd man den Frame danach erneut (ohne Cache zu löschen), funktioniert es wieder.
+		 * TODO: If you clear the system cache and reload the frame while the backend settings are opened, the extension version can not be detected.
+		 * TODO: Reloading the frame again (without deleting any cache), it works.
 		 */
 		$backendSettings['configVersion'] = TgMUtility::EXT_CONFIG_VERSION;
 		$this->view->assign('backendSettings', $backendSettings);
@@ -84,9 +80,13 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 	 */
 	public function saveAction($backendSettings) {
 		file_put_contents(LoginFormHook::BACKEND_SETTINGS_FILE_PATH, json_encode($backendSettings, JSON_PRETTY_PRINT));
-
 		$this->addFlashMessage('Die Daten wurden gespeichert.', 'Erfolgreich', AbstractMessage::OK);
-		$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
+
+		try {
+			$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
+		} catch (\TYPO3\CMS\Extbase\Mvc\Exception $exception) {
+
+		}
 	}
 
 	/**
@@ -97,7 +97,12 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 	 * @return void
 	 */
 	public function updateFromSettingsAction($backendSettings) {
-		$this->addFlashMessage('Die Felder wurden aktualisiert, die Daten jedoch noch nicht gespeichert.', 'Hinweis', AbstractMessage::WARNING);
-		$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
+		$this->addFlashMessage('Die Felder wurden aktualisiert, die Daten jedoch noch nicht gespeichert.', 'Hinweis:', AbstractMessage::WARNING);
+
+		try {
+			$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
+		} catch (\TYPO3\CMS\Extbase\Mvc\Exception $exception) {
+
+		}
 	}
 }

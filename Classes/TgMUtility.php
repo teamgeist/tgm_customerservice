@@ -13,15 +13,14 @@
 class TgMUtility {
 
 	const EXT_KEY = 'tgm_customerservice';
-	const EXT_DIR_PATH = PATH_site . 'fileadmin/ext/tgm_customerservice';
+	const EXT_DIR_PATH = PATH_site . 'fileadmin/ext/' . self::EXT_KEY;
 	const EXT_CONFIG_VERSION = 1;
 
 	/**
-	 * TODO: Einen anderen Weg finden die Modul-Gruppe umzupositionieren, da dieser nicht gut ist und zu Fehlern führen kann.
-	 * TODO: Weiteres hier: https://forge.typo3.org/issues/24949
+	 * TODO: Find another way to re-sort module groups. See https://forge.typo3.org/issues/24949
 	 *
-	 * @param $groupToMove
-	 * @param $after
+	 * @param $groupToMove string The group to move.
+	 * @param $after string Insert the given group after...
 	 */
 	public static function moveBackendModuleGroup($groupToMove, $after) {
 		if(trim($after) === '' || empty($after)) {

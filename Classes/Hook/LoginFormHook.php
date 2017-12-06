@@ -67,19 +67,15 @@ class LoginFormHook extends UsernamePasswordLoginProvider {
 	}
 
 	/**
-	 * Prüft, ob die Konfigurationsdatei existiert oder nicht und gibt den Inhalt als Array zurück.
-	 * Wenn sie nicht existiert, werden die Standardwerte returned.
+	 * Checks if the configuration file exists and returns it's content as an array.
+	 * If it doesn't exist, it'll return an empty array.
 	 *
-	 * @return array|mixed Das Array mit dem Inhalt der Konfigurationsdatei oder den Standardwerten.
+	 * @return array The array with the given config values.
 	 */
 	public static function getBackendLoginSettings() {
-
 		/**
-		 * Prüft, ob die Datei existiert oder nicht.
+		 * Checks if the file exists or not.
 		 */
-		if(file_exists(self::BACKEND_SETTINGS_FILE_PATH)) {
-			return json_decode(file_get_contents(self::BACKEND_SETTINGS_FILE_PATH), true);
-		}
-		return [];
+		return file_exists(self::BACKEND_SETTINGS_FILE_PATH) ? json_decode(file_get_contents(self::BACKEND_SETTINGS_FILE_PATH), true) : [];
 	}
 }
