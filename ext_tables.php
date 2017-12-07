@@ -39,14 +39,14 @@ if(TYPO3_MODE == 'BE') {
 }
 
 call_user_func(
-	function ($extKey) {
+	function ($_EXTKEY) {
 		if(TYPO3_MODE === 'BE') {
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 				'TgM.TgmCustomerservice', 'tgmmodulegroup', '', '', [],
 				[
 					'access' => 'user,group',
-					'icon' => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod.png',
-					'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_be_module.xlf',
+					'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/user_mod.png',
+					'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be_module.xlf',
 				]
 			);
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
@@ -57,15 +57,15 @@ call_user_func(
 				],
 				[
 					'access' => 'user,group',
-					'icon' => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod.png',
-					'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_administrationmodule.xlf',
+					'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/user_mod.png',
+					'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_administrationmodule.xlf',
 				]
 			);
 		}
 
 		TgMUtility::moveBackendModuleGroup('TgmCustomerserviceTgmmodulegroup', 'web');
 
-		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'TgM - Customer Service');
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'TgM - Customer Service');
 
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tgmcustomerservice_domain_model_administrationmodule', 'EXT:tgm_customerservice/Resources/Private/Language/locallang_csh_tx_tgmcustomerservice_domain_model_administrationmodule.xlf');
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_tgmcustomerservice_domain_model_administrationmodule');

@@ -46,4 +46,15 @@ class TgMUtility {
 
 		$GLOBALS['TBE_MODULES'] = array_merge($arrayTop, $arrayBottom);
 	}
+
+	/**
+	 * Checks if the given string is an url or not. (quick check)
+	 *
+	 * @param $string
+	 *
+	 * @return false|int
+	 */
+	public static function isUrl($string) {
+		return preg_match('/^(http[s]?:\/\/)/', $string);
+	}
 }

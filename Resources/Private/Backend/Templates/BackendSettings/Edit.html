@@ -23,53 +23,56 @@
                     fieldId: 'style-topbar-icon',
                     fieldProperty: 'style.topbarIcon',
                     fieldLabel: 'Topbar-Icon',
-                    fieldDescription: '<sub>(22x22 Pixel empfohlen) (http://example.com/typo3/&lt;Pfad&gt;) <i>(Nicht existierende Pfade können PHP-Fehler verursachen)</i></sub>'
+                    fieldDescription: '<sub>(22x22 Pixel empfohlen) (Lokaler Pfad, keine URL)</sub>'
                 }"/>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="style-highlight-color">Hightlight-Color&nbsp;<sub>(Hervorhebungsfarbe beim Login) (6-stellige-HEX-Farbe mit beginnendem "#")</sub></label>
-                        <f:form.textfield id="style-highlight-color" type="text" class="form-control" property="style.highlightColor"/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="style-background">Hintergrund <sub>(6-stellige-HEX-Farbe mit beginnendem "#" oder Direktlink)</sub></label>
-                        <f:form.textfield id="style-background" type="text" class="form-control" property="style.background"/>
-                    </div>
-                </div>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'style-highlight-color',
+                    fieldProperty: 'style.highlightColor',
+                    fieldLabel: 'Hightlight-Color',
+                    fieldDescription: '<sub>(Hervorhebungsfarbe beim Login) (6-stellige-HEX-Farbe mit beginnendem &quot;#&quot;)</sub>'
+                }"/>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'style-background',
+                    fieldProperty: 'style.background',
+                    fieldLabel: 'Hintergrund',
+                    fieldDescription: '<sub>(Hervorhebungsfarbe beim Login) (6-stellige-HEX-Farbe mit beginnendem &quot;#&quot;)</sub>'
+                }"/>
             </div>
         </fieldset>
         <br/>
         <fieldset>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="companyData-title">Titel</label>
-                        <f:form.textfield id="companyData-title" type="text" class="form-control" property="companyData.title"/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="companyData-companyLogo">Firmenlogo <sub>(73x22 Pixel empfohlen)</sub></label>
-                        <f:form.textfield id="companyData-companyLogo" type="text" class="form-control" property="companyData.companyLogo"/>
-                    </div>
-                </div>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'companyData-title',
+                    fieldProperty: 'companyData.title',
+                    fieldLabel: 'Titel'
+                }"/>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'companyData-companyLogo',
+                    fieldProperty: 'companyData.companyLogo',
+                    fieldLabel: 'Firmenlogo',
+                    fieldDescription: '<sub>(73x22 Pixel empfohlen)</sub>'
+                }"/>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="companyData-company">Firmenname</label>
-                        <f:form.textfield id="companyData-company" type="text" class="form-control" property="companyData.company"/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="companyData-subtitle">Untertitel</label>
-                        <f:form.textfield id="companyData-subtitle" type="text" class="form-control" property="companyData.subtitle"/>
-                    </div>
-                </div>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'companyData-company',
+                    fieldProperty: 'companyData.company',
+                    fieldLabel: 'Firmenname'
+                }"/>
+                <f:render section="SixCol" arguments="{
+                    colClass: 'col-md-6',
+                    fieldId: 'companyData-subtitle',
+                    fieldProperty: 'companyData.subtitle',
+                    fieldLabel: 'Untertitel'
+                }"/>
             </div>
         </fieldset>
         <br/>
