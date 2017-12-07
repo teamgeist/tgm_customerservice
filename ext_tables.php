@@ -2,6 +2,7 @@
 
 use TgM\TgmCustomerservice\Hook\LoginFormHook;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 defined('TYPO3_MODE') || die('Access denied.');
 
@@ -11,10 +12,16 @@ if(TYPO3_MODE == 'BE') {
 	require_once ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hook/LoginFormHook.php';
 
 	/**
-	 * TODO: Non-existing paths might cause a php error.
 	 * TODO: Make link and toolbar editable
 	 */
 	$topbarIcon = LoginFormHook::getBackendLoginSettings()['style']['topbarIcon'];
+
+	$typo3MajorVersion = explode('.', VersionNumberUtility::getCurrentTypo3Version())[0];
+	if($typo3MajorVersion !== '7') {
+		if(strlen(trim($topbarIcon)) > 0) {
+			$topbarIcon = 'typo3/' . $topbarIcon;
+		}
+	}
 
 	// TBE_STYLES
 	if(!is_null($topbarIcon) || !empty(trim($topbarIcon))) {
@@ -39,14 +46,14 @@ if(TYPO3_MODE == 'BE') {
 }
 
 call_user_func(
-	function ($_EXTKEY) {
+	function ($extKey) {
 		if(TYPO3_MODE === 'BE') {
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 				'TgM.TgmCustomerservice', 'tgmmodulegroup', '', '', [],
 				[
 					'access' => 'user,group',
-					'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/user_mod.png',
-					'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be_module.xlf',
+					'icon' => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod.png',
+					'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_be_module.xlf',
 				]
 			);
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
@@ -57,15 +64,15 @@ call_user_func(
 				],
 				[
 					'access' => 'user,group',
-					'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/user_mod.png',
-					'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_administrationmodule.xlf',
+					'icon' => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod.png',
+					'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_administrationmodule.xlf',
 				]
 			);
 		}
 
 		TgMUtility::moveBackendModuleGroup('TgmCustomerserviceTgmmodulegroup', 'web');
 
-		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'TgM - Customer Service');
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'TgM - Customer Service');
 
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tgmcustomerservice_domain_model_administrationmodule', 'EXT:tgm_customerservice/Resources/Private/Language/locallang_csh_tx_tgmcustomerservice_domain_model_administrationmodule.xlf');
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_tgmcustomerservice_domain_model_administrationmodule');
