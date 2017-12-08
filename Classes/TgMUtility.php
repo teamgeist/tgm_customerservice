@@ -14,7 +14,7 @@ class TgMUtility {
 
 	const EXT_KEY = 'tgm_customerservice';
 	const EXT_DIR_PATH = PATH_site . 'fileadmin/ext/' . self::EXT_KEY;
-	const EXT_CONFIG_VERSION = 1;
+	const EXT_CONFIG_VERSION = 2;
 
 	/**
 	 * TODO: Find another way to re-sort module groups. See https://forge.typo3.org/issues/24949

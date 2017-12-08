@@ -80,24 +80,12 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 	 */
 	public function saveAction($backendSettings) {
 
-		$topbarIconExists = $this->checkTopbarIcon($backendSettings);
-		if($topbarIconExists) {
-			// Save settings
-			file_put_contents(LoginFormHook::BACKEND_SETTINGS_FILE_PATH, json_encode($backendSettings, JSON_PRETTY_PRINT));
+		file_put_contents(LoginFormHook::BACKEND_SETTINGS_FILE_PATH, json_encode($backendSettings, JSON_PRETTY_PRINT));
+		$this->addFlashMessage('Die Daten wurden gespeichert.', 'Erfolgreich', AbstractMessage::OK);
+		try {
+			$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
+		} catch (\TYPO3\CMS\Extbase\Mvc\Exception $exception) {
 
-			$this->addFlashMessage('Die Daten wurden gespeichert.', 'Erfolgreich', AbstractMessage::OK);
-			try {
-				$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
-			} catch (\TYPO3\CMS\Extbase\Mvc\Exception $exception) {
-
-			}
-		} else {
-			$this->addFlashMessage('Der angegebene Pfad für das Topbar-Icon existiert nicht.', 'Hinweis:', AbstractMessage::ERROR);
-			try {
-				$this->redirect('edit', 'BackendSettings', 'TgmCustomerservice', ['backendSettings' => $backendSettings]);
-			} catch (\TYPO3\CMS\Extbase\Mvc\Exception $exception) {
-
-			}
 		}
 	}
 
@@ -116,24 +104,5 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 		} catch (\TYPO3\CMS\Extbase\Mvc\Exception $exception) {
 
 		}
-	}
-
-	/**
-	 * Checks if the given topbar icon exists.
-	 *
-	 * @param $backendSettings array The backend settings.
-	 *
-	 * @return bool Returns true if the topbar icon exist.
-	 */
-	private function checkTopbarIcon($backendSettings) {
-		if(TgMUtility::isUrl($backendSettings['style']['topbarIcon'])) {
-			return false;
-		}
-
-		$topbarIconPath = PATH_typo3 . $backendSettings['style']['topbarIcon'];
-		if(file_exists($topbarIconPath)) {
-			return true;
-		}
-		return false;
 	}
 }

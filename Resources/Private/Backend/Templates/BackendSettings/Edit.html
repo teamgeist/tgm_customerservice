@@ -12,18 +12,11 @@
         <fieldset>
             <div class="row">
                 <f:render section="SixCol" arguments="{
-                    colClass: 'col-md-6',
+                    colClass: 'col-md-12',
                     fieldId: 'style-login-logo',
                     fieldProperty: 'style.logo',
                     fieldLabel: 'Login-Logo',
                     fieldDescription: '<sub>(150px-Breite empfohlen) (z. B.: &quot;http://example.com/typo3/&lt;Pfad&gt;&quot; oder Direktlink)</sub>'
-                }"/>
-                <f:render section="SixCol" arguments="{
-                    colClass: 'col-md-6',
-                    fieldId: 'style-topbar-icon',
-                    fieldProperty: 'style.topbarIcon',
-                    fieldLabel: 'Topbar-Icon',
-                    fieldDescription: '<sub>(22x22 Pixel empfohlen) (Lokaler Pfad, keine URL)</sub>'
                 }"/>
             </div>
             <div class="row">
@@ -78,56 +71,16 @@
         <br/>
         <fieldset>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-street">Straße</label>
-                        <f:form.textfield id="companyData-street" type="text" class="form-control" property="companyData.street"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-housenumber">Nummer</label>
-                        <f:form.textfield id="companyData-housenumber" type="text" class="form-control" property="companyData.housenumber"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-zip">PLZ</label>
-                        <f:form.textfield id="companyData-zip" type="text" class="form-control" property="companyData.zip"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-city">Ort</label>
-                        <f:form.textfield id="companyData-city" type="text" class="form-control" property="companyData.city"/>
-                    </div>
-                </div>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-street', fieldProperty: 'companyData.street', fieldLabel: 'Straße'}"/>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-housenumber', fieldProperty: 'companyData.housenumber', fieldLabel: 'Nummer'}"/>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-zip', fieldProperty: 'companyData.zip', fieldLabel: 'PLZ'}"/>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-city', fieldProperty: 'companyData.city', fieldLabel: 'Ort'}"/>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-phone">Telefon</label>
-                        <f:form.textfield id="companyData-phone" type="text" class="form-control" property="companyData.phone"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-fax">Fax</label>
-                        <f:form.textfield id="companyData-fax" type="text" class="form-control" property="companyData.fax"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-city">Webseite</label>
-                        <f:form.textfield id="companyData-website" type="text" class="form-control" property="companyData.website"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="companyData-email">E-Mail</label>
-                        <f:form.textfield id="companyData-email" type="text" class="form-control" property="companyData.email"/>
-                    </div>
-                </div>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-phone', fieldProperty: 'companyData.phone', fieldLabel: 'Telefon'}"/>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-fax', fieldProperty: 'companyData.fax', fieldLabel: 'Fax'}"/>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-website', fieldProperty: 'companyData.website', fieldLabel: 'Webseite'}"/>
+                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-email', fieldProperty: 'companyData.email', fieldLabel: 'E-Mail'}"/>
             </div>
         </fieldset>
         <hr>
