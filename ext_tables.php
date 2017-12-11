@@ -1,8 +1,6 @@
 <?php
 
-use TgM\TgmCustomerservice\Hook\LoginFormHook;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 defined('TYPO3_MODE') || die('Access denied.');
 

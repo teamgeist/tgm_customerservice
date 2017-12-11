@@ -52,15 +52,11 @@ class BackendSettingsController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
 
 		$updateFile = $backendSettings['paths']['file'];
 		if(!is_null($updateFile)) {
-			/**
-			 * TRUE = cdn update, FALSE = file update
-			 */
+			// true = cdn update, false = file update
 			$fileJson = file_get_contents(TgMUtility::isUrl($updateFile) ? $updateFile : PATH_site . $updateFile);
 			$backendSettings = json_decode($fileJson, true);
-		} else {
-			if(file_exists(LoginFormHook::BACKEND_SETTINGS_FILE_PATH)) {
-				$backendSettings = json_decode(file_get_contents(LoginFormHook::BACKEND_SETTINGS_FILE_PATH), true);
-			}
+		} else if(file_exists(LoginFormHook::BACKEND_SETTINGS_FILE_PATH)) {
+			$backendSettings = json_decode(file_get_contents(LoginFormHook::BACKEND_SETTINGS_FILE_PATH), true);
 		}
 
 		/**

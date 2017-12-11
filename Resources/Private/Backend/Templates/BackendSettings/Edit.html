@@ -11,7 +11,7 @@
         <hr>
         <fieldset>
             <div class="row">
-                <f:render section="SixCol" arguments="{
+                <f:render section="InputField" arguments="{
                     colClass: 'col-md-12',
                     fieldId: 'style-login-logo',
                     fieldProperty: 'style.logo',
@@ -20,14 +20,14 @@
                 }"/>
             </div>
             <div class="row">
-                <f:render section="SixCol" arguments="{
+                <f:render section="InputField" arguments="{
                     colClass: 'col-md-6',
                     fieldId: 'style-highlight-color',
                     fieldProperty: 'style.highlightColor',
                     fieldLabel: 'Hightlight-Color',
                     fieldDescription: '<sub>(Hervorhebungsfarbe beim Login) (6-stellige-HEX-Farbe mit beginnendem &quot;#&quot;)</sub>'
                 }"/>
-                <f:render section="SixCol" arguments="{
+                <f:render section="InputField" arguments="{
                     colClass: 'col-md-6',
                     fieldId: 'style-background',
                     fieldProperty: 'style.background',
@@ -39,48 +39,27 @@
         <br/>
         <fieldset>
             <div class="row">
-                <f:render section="SixCol" arguments="{
-                    colClass: 'col-md-6',
-                    fieldId: 'companyData-title',
-                    fieldProperty: 'companyData.title',
-                    fieldLabel: 'Titel'
-                }"/>
-                <f:render section="SixCol" arguments="{
-                    colClass: 'col-md-6',
-                    fieldId: 'companyData-companyLogo',
-                    fieldProperty: 'companyData.companyLogo',
-                    fieldLabel: 'Firmenlogo',
-                    fieldDescription: '<sub>(73x22 Pixel empfohlen)</sub>'
-                }"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-6', fieldId: 'companyData-title', fieldProperty: 'companyData.title', fieldLabel: 'Titel'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-6', fieldId: 'companyData-companyLogo', fieldProperty: 'companyData.companyLogo', fieldLabel: 'Firmenlogo', fieldDescription: '<sub>(73x22 Pixel empfohlen)</sub>'}"/>
             </div>
             <div class="row">
-                <f:render section="SixCol" arguments="{
-                    colClass: 'col-md-6',
-                    fieldId: 'companyData-company',
-                    fieldProperty: 'companyData.company',
-                    fieldLabel: 'Firmenname'
-                }"/>
-                <f:render section="SixCol" arguments="{
-                    colClass: 'col-md-6',
-                    fieldId: 'companyData-subtitle',
-                    fieldProperty: 'companyData.subtitle',
-                    fieldLabel: 'Untertitel'
-                }"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-6', fieldId: 'companyData-company', fieldProperty: 'companyData.company', fieldLabel: 'Firmenname'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-6', fieldId: 'companyData-subtitle', fieldProperty: 'companyData.subtitle', fieldLabel: 'Untertitel'}"/>
             </div>
         </fieldset>
         <br/>
         <fieldset>
             <div class="row">
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-street', fieldProperty: 'companyData.street', fieldLabel: 'Straße'}"/>
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-housenumber', fieldProperty: 'companyData.housenumber', fieldLabel: 'Nummer'}"/>
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-zip', fieldProperty: 'companyData.zip', fieldLabel: 'PLZ'}"/>
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-city', fieldProperty: 'companyData.city', fieldLabel: 'Ort'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-street', fieldProperty: 'companyData.street', fieldLabel: 'Straße'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-housenumber', fieldProperty: 'companyData.housenumber', fieldLabel: 'Nummer'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-zip', fieldProperty: 'companyData.zip', fieldLabel: 'PLZ'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-city', fieldProperty: 'companyData.city', fieldLabel: 'Ort'}"/>
             </div>
             <div class="row">
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-phone', fieldProperty: 'companyData.phone', fieldLabel: 'Telefon'}"/>
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-fax', fieldProperty: 'companyData.fax', fieldLabel: 'Fax'}"/>
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-website', fieldProperty: 'companyData.website', fieldLabel: 'Webseite'}"/>
-                <f:render section="SixCol" arguments="{colClass: 'col-md-3', fieldId: 'companyData-email', fieldProperty: 'companyData.email', fieldLabel: 'E-Mail'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-phone', fieldProperty: 'companyData.phone', fieldLabel: 'Telefon'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-fax', fieldProperty: 'companyData.fax', fieldLabel: 'Fax'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-website', fieldProperty: 'companyData.website', fieldLabel: 'Webseite'}"/>
+                <f:render section="InputField" arguments="{colClass: 'col-md-3', fieldId: 'companyData-email', fieldProperty: 'companyData.email', fieldLabel: 'E-Mail'}"/>
             </div>
         </fieldset>
         <hr>
@@ -119,7 +98,8 @@
     </div>
 </f:section>
 
-<f:section name="SixCol">
+<f:comment><!-- InputField-Section --></f:comment>
+<f:section name="InputField">
     <div class="{colClass}">
         <div class="form-group">
             <label for="{fieldId}">{fieldLabel} {f:if(condition: fieldDescription, then: fieldDescription)}</label>
